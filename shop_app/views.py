@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, Http404
+from .models import Cadet, Product
 #from .forms import Hours
 #^^ update for this repos folder
 #from .models import HoursLogged
