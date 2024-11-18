@@ -19,15 +19,20 @@ def cadet_list(request):
     return render(request, "shop_app/cadet_list.html", context)
 
 def product_list(request):
-    data = Product.object.all()
+    data = Product.objects.all()
     context = {'products': data}
     return render(request, "shop_app/product_list.html", context)
 
 def product_lookup(request):
+    products=None
+    if request.method == "GET":
+        empty_form = ProductLookup()
+        context = {'form':empty_form}
+        return render(request, "shop_app/product_lookup.html", context)
     if request.method == "POST":
         submittedForm = ProductLookup(request.POST)
         if submittedForm.is_valid():
             productName = submittedForm.cleaned_data['prodName']
             products = Product.objects.filter(prodname__contains=productName)
-    context = {'Product':products}
-    return render(request, 'shop_app/product_result.html', context)
+    context = {'product':products}
+    return render(request, 'shop_app/product_results.html', context)
