@@ -34,5 +34,5 @@ def product_lookup(request):
         if submittedForm.is_valid():
             productName = submittedForm.cleaned_data['prodName']
             products = Product.objects.filter(prodname__contains=productName)
-    context = {'product':products}
+    context = {'products':products}
     return render(request, 'shop_app/product_results.html', context)
