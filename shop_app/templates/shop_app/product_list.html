@@ -9,11 +9,11 @@
 {% block content %}
 
 <!-- courses/course_list.html -->
-<h1>All Cadets</h1>
+<h1>All Products</h1>
 <ul>
-  {% for cadet in cadets %}
+  {% for product in products %}
     <li>
-      {{ cadet.firstname }} <br />
+      {{ product.prodname }} <br />
     </li>
   {% endfor %}
 </ul>

@@ -1,59 +1,104 @@
-/* style.css */
-body {
-    font-family: Arial, sans-serif;
-    display: flex;
-}
-
-.container {
-    display: flex;
-    min-height: 100vh;
-}
-
-.sidebar {
-    width: 200px;
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-}
-
-.sidebar h2 {
-    font-size: 1.5em;
-}
-
-.sidebar ul {
-    list-style-type: none;
+/* General Reset */
+* {
+    margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-.sidebar ul li {
-    margin: 15px 0;
+/* Typography and Font */
+body {
+    font-family: 'Roboto', Arial, sans-serif; /* Professional sans-serif font */
+    font-size: 16px;
+    color: #333; /* Neutral, easy-to-read text color */
+    background-color: #f7f8fa; /* Light, clean background color */
+    line-height: 1.6;
 }
 
-.sidebar ul li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-.sidebar ul li a:hover {
-    text-decoration: underline;
-}
-
-.main-content {
-    flex-grow: 1;
+/* Container Styling */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
 }
 
-table {
+/* Forms */
+form {
+    background: #ffffff; /* Clean white form background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border: 1px solid #e3e3e3;
+}
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+form input,
+form textarea,
+form select {
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-table, th, td {
-    border: 1px solid #ddd;
-}
-
-th, td {
     padding: 10px;
-    text-align: left;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+form input:focus,
+form textarea:focus,
+form select:focus {
+    outline: none;
+    border-color: #007bff; /* Highlight color */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Glow effect */
+}
+
+form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+/* Rounded Button Links */
+a.button {
+    display: inline-block;
+    background-color: #007bff; /* Primary button color */
+    color: #fff; /* White text color */
+    text-decoration: none; /* Remove underline */
+    padding: 8px 15px; /* Add some padding */
+    border-radius: 50px; /* Fully rounded corners */
+    font-size: 14px; /* Button text size */
+    font-weight: 500; /* Slightly bold for emphasis */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 10px;
+}
+
+a.button:hover {
+    background-color: #0056b3; /* Darker shade for hover effect */
+    transform: scale(1.05); /* Subtle zoom-in on hover */
+}
+
+a.button:active {
+    background-color: #003f7f; /* Even darker for active state */
+    transform: scale(0.95); /* Subtle shrink on click */
+}
+
+a.button.disabled {
+    background-color: #cccccc; /* Gray for disabled state */
+    color: #666666;
+    pointer-events: none; /* Prevent clicks */
+    cursor: not-allowed;
 }

@@ -1,0 +1,24 @@
+{% load static %}
+
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'shop_app/style.css' %}"/>
+</head>
+
+
+<body>
+{% block content %}
+
+
+<!-- courses/course_list.html -->
+<h1>Homepage of The Cadet Shop</h1>
+
+<a class="button" href="/cadet_list">List of Cadets</a>
+<a class="button" href="/product_list">List of Products</a>
+<a class="button" href="/product_lookup">Product Lookup</a>
+
+{% endblock %}
+
+</body>
+</html>
