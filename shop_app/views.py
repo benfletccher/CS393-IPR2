@@ -1,10 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, Http404
 from .models import Cadet, Product
-#from .forms import Hours
-#^^ update for this repos folder
-#from .models import HoursLogged
-##^^ update for this repos folder
+from .forms import ProductLookup
+
 
 
 # Create your views here.
@@ -24,3 +22,12 @@ def product_list(request):
     data = Product.object.all()
     context = {'products': data}
     return render(request, "shop_app/product_list.html", context)
+
+def product_lookup(request):
+    if request.method == "POST":
+        submittedForm = ProductLookup(request.POST)
+        if submittedForm.is_valid():
+            productName = submittedForm.cleaned_data['prodName']
+            products = Product.objects.filter(prodname__contains=productName)
+    context = {'Product':products}
+    return render(request, 'shop_app/product_result.html', context)

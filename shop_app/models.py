@@ -95,7 +95,7 @@ class Cadet(models.Model):
     company = models.CharField(max_length=2, blank=True, null=True)
     gradyear = models.TextField(db_column='gradYear', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
     roomnumber = models.IntegerField(db_column='roomNumber', blank=True, null=True)  # Field name made lowercase.
-    email = models.CharField(max_length=200, blank=True, null=True)
+    email = models.EmailField(max_length=200, blank=True, null=True)
     venmo = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
