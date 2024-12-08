@@ -39,6 +39,12 @@ class CreateVendorAccount(forms.Form):
     venmo = forms.CharField(label="Venmo Username", max_length=100)
     dodId = forms.IntegerField(label='DOD ID')
 
+class newListing(forms.Form):
+    listingName = forms.CharField(label="Listing Name", max_length=255)
+    price = forms.DecimalField(label="Price", max_digits=6, decimal_places=2)
+    quantity = forms.IntegerField(label="Quantity")
+    #listingDate = forms.DateField(label="Today's Date (YYYY-MM-DD)")
+
 GROUP_CHOICES = (
     ("1", "Vendor"),
     ("2", "Customer"),

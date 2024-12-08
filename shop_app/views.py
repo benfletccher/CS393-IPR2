@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, Http404
 from .models import Cadet, Product, Customer, Vendor, Listing
-from .forms import ProductLookup, CreateCustomerAccount, CreateVendorAccount, Login
+from .forms import ProductLookup, CreateCustomerAccount, CreateVendorAccount, Login, newListing
 from django.contrib.auth.models import Group, User
 from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 
 
 
@@ -132,7 +133,6 @@ def vendor_create(request):
                 vendorGroup = Group.objects.get(name='Vendor')
                 vendorUser.groups.add(vendorGroup)
                 vendorUser.save()
-                ##print("GOT THROUGH USER CREATION")
 
             newCadet = Cadet(
                 cadetid = form.cleaned_data['cadetId'],
@@ -154,3 +154,24 @@ def vendor_create(request):
     newForm = CreateVendorAccount()
     context = {'vendor_create_form':newForm}
     return render(request, 'shop_app/vendor_create.html', context)
+
+@login_required
+def new_listing(request):
+    listing = None
+    if request.method == "POST":
+        form = newListing(request.POST)
+        if form.is_valid():
+            vendor_last = request.user.last_name
+            vendor = Vendor.objects.select_related('cadet').filter(cadet__lastname=vendor_last).values('cadet__cadetid')
+
+            listing = Listing(
+                vendorid = vendor,
+                listingname = form.cleaned_data['listingName'],
+                price = form.cleaned_data['price'],
+                quantity = form.cleaned_data['quantity'],
+                listingDate = timezone.now().date()
+            )
+            listing.save()
+    newForm = newListing()
+    context = {"create_listing":newForm}
+    return render(request, 'shop_app/add_listing.html', context)

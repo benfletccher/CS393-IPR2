@@ -160,7 +160,7 @@ class DjangoSession(models.Model):
 
 
 class Listing(models.Model):
-    listingid = models.IntegerField(db_column='listingId', primary_key=True)  # Field name made lowercase.
+    listingid = models.AutoField(db_column='listingId', primary_key=True)  # Field name made lowercase.
     vendorid = models.ForeignKey('Vendor', models.DO_NOTHING, db_column='vendorId')  # Field name made lowercase.
     listingname = models.CharField(db_column='listingName', max_length=255)  # Field name made lowercase.
     price = models.DecimalField(max_digits=6, decimal_places=2)
