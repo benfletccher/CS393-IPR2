@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, Http404
-from .models import Cadet, Product, Customer, Vendor
+from .models import Cadet, Product, Customer, Vendor, Listing
 from .forms import ProductLookup, CreateCustomerAccount, CreateVendorAccount, Login
 from django.contrib.auth.models import Group, User
 from django.contrib.auth import authenticate
@@ -18,10 +18,15 @@ def index(request):
         if submittedForm.is_valid():
             user = authenticate(username=submittedForm.cleaned_data['username'], password=submittedForm.cleaned_data['password'])
             if user is not None:
-                print("SUCCESFULLY LOGGGED INNNN!!!!!")
-                return HttpResponse("GOOD LOG IN")
+                userType = submittedForm.cleaned_data['group']
+                if userType == 'Vendor':
+                    return render(request, "shop_app/vendor_landing.html")
+                elif userType == "Customer": 
+                    return render(request, "shop_app/customer_landing.html")
+                else:
+                    return Http404
             else:
-                return HttpResponse("INCORRECT LOG IN")
+                return HttpResponse("INCORRECT LOG IN!")
     newForm = Login()
     context = {'login_form': newForm}
     return render(request, "shop_app/index.html", context)
@@ -38,6 +43,15 @@ def product_list(request):
     data = Product.objects.all()
     context = {'products': data}
     return render(request, "shop_app/product_list.html", context)
+
+def listing(request, listing_id):
+    return HttpResponse(f"You're looking at task {listing_id}.")
+
+def all_listings(request):
+    listings = Listing.objects.order_by("listingdate")
+    context = {"all_listings": listings}
+    return render(request, "shop_app/customer_landing.html", context)
+
 
 def product_lookup(request):
     products=None
