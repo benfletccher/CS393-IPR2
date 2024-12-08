@@ -43,7 +43,7 @@ def product_lookup(request):
 def customer_create(request):
     newCustomer = None
     if request.method == "POST":
-        form = CreateCustomerAccount(request.Post)
+        form = CreateCustomerAccount(request.POST)
         if form.is_valid():
             newCadet = Cadet(
                 cadetid = form.cleaned_data['cadetId'],
@@ -69,7 +69,7 @@ def customer_create(request):
 def vendor_create(request):
     newVendor = None
     if request.method == "POST":
-        form = CreateVendorAccount(request.Post)
+        form = CreateVendorAccount(request.POST)
         if form.is_valid():
             newCadet = Cadet(
                 cadetid = form.cleaned_data['cadetId'],
