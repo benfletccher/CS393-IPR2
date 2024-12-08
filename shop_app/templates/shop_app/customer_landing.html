@@ -1,11 +1,17 @@
 {% extends "shop_app/base_generic.html" %}
+{% load static%}
+
+
+<head>
+  <link rel="stylesheet" href="{% static 'css/listing.css' %}">
+</head>
 
 {% block content %}
   <div class="container">
     <h1>Welcome, {{ customer_name }}! Browse our listings:</h1>
 
     <div class="card-container">
-      {% for listing in listings %}
+      {% for listing in all_listings %}
         <div class="card">
           <a href="{{ listing.listingid }}">
             <div class="card-body">
