@@ -3,15 +3,16 @@ from django.http import HttpResponse, Http404
 from .models import Cadet, Product, Customer, Vendor, Listing
 from .forms import ProductLookup, CreateCustomerAccount, CreateVendorAccount, Login
 from django.contrib.auth.models import Group, User
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, logout, login
+from django.contrib.auth.decorators import login_required
 
 
 
 # Create your views here.
 
-def logout(request):
+def logout_view(request):
     logout(request)
-    return landing(request)
+    return render(request, "shop_app/landing.html")
 
 def landing(request):
     return render(request, "shop_app/landing.html")
@@ -23,14 +24,17 @@ def index(request):
             user = authenticate(username=submittedForm.cleaned_data['username'], password=submittedForm.cleaned_data['password'])
             if user is not None:
                 userType = submittedForm.cleaned_data['group']
-                if userType == 'Vendor':
+                print(userType)
+                login(request, user)
+                if userType == "1":
                     return render(request, "shop_app/vendor_landing.html")
-                elif userType == "Customer": 
-                    return render(request, "shop_app/customer_landing.html")
+                elif userType == "2": 
+                    tempReq = request
+                    return redirect("/customer_landing")
                 else:
                     return Http404
             else:
-                return HttpResponse("INCORRECT LOG IN!")
+                return redirect("/index")
     newForm = Login()
     context = {'login_form': newForm}
     return render(request, "shop_app/index.html", context)
@@ -51,7 +55,8 @@ def product_list(request):
 def listing(request, listing_id):
     return HttpResponse(f"You're looking at task {listing_id}.")
 
-def all_listings(request):
+@login_required
+def customer_landing(request):
     listings = Listing.objects.order_by("listingdate")
     customer_name = request.user.first_name
     context = {"all_listings": listings, "customer_name":customer_name}

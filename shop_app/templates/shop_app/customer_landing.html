@@ -1,0 +1,21 @@
+{% extends "shop_app/base_generic.html" %}
+
+{% block content %}
+  <div class="container">
+    <h1>Welcome, {{ customer_name }}! Browse our listings:</h1>
+
+    <div class="card-container">
+      {% for listing in listings %}
+        <div class="card">
+          <a href="{{ listing.listingid }}">
+            <div class="card-body">
+              <h3 class="card-title">{{ listing.listingname }}</h3>
+              <p class="card-price">${{ listing.price }}</p>
+              <p class="card-date">{{ listing.listingdate|date:"F d, Y" }}</p>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
