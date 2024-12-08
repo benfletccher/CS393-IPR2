@@ -34,3 +34,7 @@ class CreateVendorAccount(forms.Form):
     email = forms.EmailField(label= "Email", max_length=200)
     venmo = forms.CharField(label="Venmo Username", max_length=100)
     dodId = forms.IntegerField(label='DOD ID')
+
+class login(forms.Form):
+    email = forms.EmailField(label = 'Email')
+    password =

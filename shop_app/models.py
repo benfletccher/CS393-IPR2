@@ -6,6 +6,7 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Administrator(models.Model):
@@ -89,6 +90,7 @@ class AuthUserUserPermissions(models.Model):
 
 
 class Cadet(models.Model):
+    user = models.OneToOneField(User, models.DO_NOTHING, db_column='user')
     cadetid = models.IntegerField(db_column='cadetId', primary_key=True)  # Field name made lowercase.
     firstname = models.CharField(db_column='firstName', max_length=100, blank=True, null=True)  # Field name made lowercase.
     lastname = models.CharField(db_column='lastName', max_length=100, blank=True, null=True)  # Field name made lowercase.
