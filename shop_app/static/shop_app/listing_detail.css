@@ -1,0 +1,71 @@
+/* General Container Styles */
+.listing-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Styles */
+h1 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Listing Details */
+.listing-details {
+    font-size: 1.2em;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.listing-details strong {
+    color: #333;
+}
+
+/* Back Button Styles */
+.back-btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.back-btn {
+    text-decoration: none;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: bold;
+}
+
+.back-btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.back-btn:active {
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .listing-container {
+        padding: 15px;
+    }
+
+    .listing-details {
+        font-size: 1em;
+    }
+
+    .back-btn {
+        font-size: 0.9em;
+        padding: 8px 16px;
+    }
+}

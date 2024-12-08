@@ -1,0 +1,31 @@
+{% extends "shop_app/base_generic.html" %}
+{% load static%}
+
+{% block content %}
+<head>
+  <link rel="stylesheet" href="{% static 'shop_app/listing.css' %}">
+</head>
+
+
+  <div class="container">
+    <h1>Welcome, {{ customer_name }}! Browse our listings:</h1>
+
+    <div class="add-listing-container">
+        <a href="{% url 'new_listing' %}" class="add-listing-btn">+ Add New Listing</a>
+    </div>
+
+    <div class="card-container">
+      {% for listing in all_listings %}
+        <div class="card">
+          <a href="{{ listing.listingid }}">
+            <div class="card-body">
+              <h3 class="card-title">{{ listing.listingname }}</h3>
+              <p class="card-price">${{ listing.price }}</p>
+              <p class="card-date">{{ listing.listingdate|date:"F d, Y" }}</p>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

@@ -11,6 +11,35 @@ h1 {
   margin-bottom: 40px;
 }
 
+/* Add Listing Button */
+.add-listing-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.add-listing-btn {
+  background-color: #28a745;
+  color: white;
+  font-size: 1em;
+  padding: 10px 20px;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.add-listing-btn:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+}
+
+.add-listing-btn:active {
+  transform: translateY(0);
+}
+
 /* Card Container */
 .card-container {
   display: grid;
@@ -32,40 +61,28 @@ h1 {
   justify-content: space-between;
 }
 
-/* Card Hover Effect */
 .card:hover {
   transform: translateY(-10px);
 }
 
-/* Card Image (Optional: If you have product images, this is for them) */
-.card-img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-
-/* Card Body */
 .card-body {
   padding: 20px;
   display: flex;
   flex-direction: column;
 }
 
-/* Card Title */
 .card-title {
   font-size: 1.5em;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
-/* Card Price */
 .card-price {
   color: #28a745;
   font-size: 1.2em;
   margin-bottom: 10px;
 }
 
-/* Card Date */
 .card-date {
   color: #888;
   font-size: 0.9em;

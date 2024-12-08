@@ -1,0 +1,27 @@
+{% extends "shop_app/base_generic.html" %}
+{% load static %}
+
+{% block content %}
+<head>
+  <link rel="stylesheet" href="{% static 'shop_app/listing_detail.css' %}">
+</head>
+
+  <div class="listing-container">
+    <!-- Listing Header -->
+    <h1>Listing #{{ listing_id }}: {{ listing_name }}</h1>
+
+    <!-- Listing Details -->
+    <div class="listing-details">
+      <p><strong>Vendor ID:</strong> {{ vendor_id }}</p>
+      <p><strong>Vendor Name:</strong> {{ vendor_name }}</p>
+      <p><strong>Price:</strong> ${{ price }}</p>
+      <p><strong>Quantity Available:</strong> {{ quantity }}</p>
+      <p><strong>Listing Date:</strong> {{ listing_date|date:"F d, Y" }}</p>
+    </div>
+
+    <!-- Back to Listings Button -->
+    <div class="back-btn-container">
+      <a href="{% url 'customer_landing' %}" class="back-btn">← Back to Listings</a>
+    </div>
+  </div>
+{% endblock %}
