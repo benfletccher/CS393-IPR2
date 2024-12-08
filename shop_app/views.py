@@ -78,6 +78,12 @@ def product_lookup(request):
     context = {'products':products}
     return render(request, 'shop_app/product_results.html', context)
 
+def vendor_landing(request):
+    listings = Listing.objects.order_by("listingdate")
+    customer_name = request.user.first_name
+    context = {"all_listings": listings, "customer_name":customer_name}
+    return render(request, "shop_app/vendor_landing.html", context)
+
 def customer_create(request):
     newCustomer = None
     if request.method == "POST":
