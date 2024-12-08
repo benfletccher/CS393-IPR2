@@ -22,7 +22,7 @@ class CreateCustomerAccount(forms.Form):
     roomNum = forms.IntegerField(label="Room Number", min_value=1)
     email = forms.EmailField(label= "Email", max_length=200)
     venmo = forms.CharField(label="Venmo Username", max_length=100)
-    shoppingpref = forms.CharField(label="Shopping Preferences ('Clothes' or 'Other')", max_length=255)
+    shoppingPref = forms.CharField(label="Shopping Preferences ('Clothes' or 'Other')", max_length=255)
 
 class CreateVendorAccount(forms.Form):
     cadetId = forms.IntegerField(label="C-Num")
