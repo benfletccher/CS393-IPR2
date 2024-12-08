@@ -9,6 +9,10 @@ from django.contrib.auth import authenticate
 
 # Create your views here.
 
+def logout(request):
+    logout(request)
+    return landing(request)
+
 def landing(request):
     return render(request, "shop_app/landing.html")
 
