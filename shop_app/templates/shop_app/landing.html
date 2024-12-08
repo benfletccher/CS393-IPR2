@@ -1,0 +1,21 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <link rel="stylesheet" href="{% static 'shop_app/landing.css' %}">
+</head>
+<body>
+    <div class="landing-container">
+        <h1>Welcome to the Cadet Shop</h1>
+        <div class="button-group">
+            <a href="/index" class="btn">Login</a>
+            <a href="create-customer.html" class="btn">Create Customer Account</a>
+            <a href="create-vendor.html" class="btn">Create Vendor Account</a>
+        </div>
+    </div>
+</body>
+</html>

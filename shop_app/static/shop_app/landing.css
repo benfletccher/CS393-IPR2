@@ -1,0 +1,66 @@
+/* Landing Page Styling */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.landing-container {
+    text-align: center;
+    padding: 20px;
+    color: #fff;
+}
+
+h1 {
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+/* Reset link styles */
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+/* Landing page container */
+.landing-container {
+    text-align: center;
+    padding: 20px;
+    color: #fff;
+}
+
+/* Heading */
+h1 {
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+/* Button group */
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Button styles */
+a.btn {
+    display: inline-block;
+    padding: 15px 20px;
+    font-size: 18px;
+    text-align: center;
+    background: #2575fc;
+    border-radius: 12px;
+    transition: background 0.3s, transform 0.2s;
+    cursor: pointer;
+}
+
+a.btn:hover {
+    background: #1a5dc1;
+    transform: translateY(-2px);
+}
+ 

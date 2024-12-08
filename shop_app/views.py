@@ -1,14 +1,17 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, Http404
-from .models import Cadet, Product
-from .forms import ProductLookup
+from .models import Cadet, Product, Customer
+from .forms import ProductLookup, CreateCustomerAccount
 
 
 
 # Create your views here.
 
+def landing(request):
+    return render(request, "shop_app/landing.html")
+
 def index(request):
-    return render(request, "shop_app/shop.html") #HttpResponse('Welcome to the Cadet Online Trading Post')
+    return render(request, "shop_app/index.html")
 
 
 # View to display all of the cadets who have registered an account
@@ -36,3 +39,29 @@ def product_lookup(request):
             products = Product.objects.filter(prodname__contains=productName)
     context = {'products':products}
     return render(request, 'shop_app/product_results.html', context)
+
+def create_customer_account(request):
+    newCustomer = None
+    if request.method == "POST":
+        form = CreateCustomerAccount(request.Post)
+        if form.is_valid():
+            newCadet = Cadet(
+                cadetid = form.cleaned_data['cadetId'],
+                firstname = form.cleaned_data['firstName'],
+                lastname = form.cleaned_data['lastName'],
+                company = form.cleaned_data['company'],
+                gradyear = form.cleaned_data['gradYear'],
+                roomnumber = form.cleaned_data['roomNum'],
+                email = form.cleaned_data['email'],
+                venmo = form.cleaned_data['venmo'],
+            )
+            newCadet.save()
+            toAddCadet = Cadet.objects.get(cadetid = form.cleaned_data['cadetId'])
+            newCustomer = Customer(
+                cadet = toAddCadet,
+                shoppingpreference = form.cleaned_data['shoppingPref']
+            )
+            newCustomer.save()
+    newForm = CreateCustomerAccount()
+    context = {'CreateCustomerAccount':newForm}
+    return render(request, 'shop_app/new_customer.html', context)

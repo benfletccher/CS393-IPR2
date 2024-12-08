@@ -1,104 +1,137 @@
 /* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Typography and Font */
 body {
-    font-family: 'Roboto', Arial, sans-serif; /* Professional sans-serif font */
-    font-size: 16px;
-    color: #333; /* Neutral, easy-to-read text color */
-    background-color: #f7f8fa; /* Light, clean background color */
-    line-height: 1.6;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-/* Container Styling */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
+/* Login Container */
+.login-container {
+    width: 100%;
+    max-width: 400px;
     padding: 20px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Forms */
-form {
-    background: #ffffff; /* Clean white form background */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    border: 1px solid #e3e3e3;
+/* Form Styling */
+.login-form {
+    display: flex;
+    flex-direction: column;
 }
 
-form label {
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    font-size: 14px;
+    margin-bottom: 5px;
     display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
     color: #555;
 }
 
-form input,
-form textarea,
-form select {
+input, select {
     width: 100%;
     padding: 10px;
-    margin-bottom: 15px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 8px;
     font-size: 14px;
-    font-family: inherit;
 }
 
-form input:focus,
-form textarea:focus,
-form select:focus {
+input:focus, select:focus {
     outline: none;
-    border-color: #007bff; /* Highlight color */
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Glow effect */
+    border-color: #2575fc;
+    box-shadow: 0 0 5px rgba(37, 117, 252, 0.5);
 }
 
-form button {
-    background-color: #007bff;
+button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background: #2575fc;
     color: #fff;
     border: none;
-    padding: 10px 15px;
-    font-size: 16px;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background 0.3s;
 }
 
-form button:hover {
-    background-color: #0056b3;
+button:hover {
+    background: #1a5dc1;
 }
 
-/* Rounded Button Links */
-a.button {
+/* Landing Page Styling */
+.landing-container {
+    text-align: center;
+    padding: 20px;
+    color: #fff;
+}
+
+h1 {
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.btn-large {
     display: inline-block;
-    background-color: #007bff; /* Primary button color */
-    color: #fff; /* White text color */
-    text-decoration: none; /* Remove underline */
-    padding: 8px 15px; /* Add some padding */
-    border-radius: 50px; /* Fully rounded corners */
-    font-size: 14px; /* Button text size */
-    font-weight: 500; /* Slightly bold for emphasis */
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    margin: 10px;
+    padding: 15px 20px;
+    font-size: 18px;
+    text-align: center;
+    color: #fff;
+    background: #2575fc;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: background 0.3s;
 }
 
-a.button:hover {
-    background-color: #0056b3; /* Darker shade for hover effect */
-    transform: scale(1.05); /* Subtle zoom-in on hover */
+.btn-large:hover {
+    background: #1a5dc1;
 }
 
-a.button:active {
-    background-color: #003f7f; /* Even darker for active state */
-    transform: scale(0.95); /* Subtle shrink on click */
+/* General link styling */
+a {
+    text-decoration: none;
+    color: inherit; /* Inherit the color from parent elements */
 }
 
-a.button.disabled {
-    background-color: #cccccc; /* Gray for disabled state */
-    color: #666666;
-    pointer-events: none; /* Prevent clicks */
-    cursor: not-allowed;
+/* Button-like link styling */
+.btn {
+    display: inline-block;
+    padding: 15px 20px;
+    font-size: 18px;
+    text-align: center;
+    color: #fff;
+    background: #2575fc;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #1a5dc1;
+    transform: translateY(-2px); /* Adds a slight lift on hover */
+}
+
+.btn.large {
+    width: 100%; /* Makes buttons in the landing page take the full width of the container */
 }
