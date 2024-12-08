@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, Http404
-from .models import Cadet, Product, Customer
-from .forms import ProductLookup, CreateCustomerAccount
+from .models import Cadet, Product, Customer, Vendor
+from .forms import ProductLookup, CreateCustomerAccount, CreateVendorAccount
 
 
 
@@ -40,7 +40,7 @@ def product_lookup(request):
     context = {'products':products}
     return render(request, 'shop_app/product_results.html', context)
 
-def create_customer_account(request):
+def customer_create(request):
     newCustomer = None
     if request.method == "POST":
         form = CreateCustomerAccount(request.Post)
@@ -63,5 +63,31 @@ def create_customer_account(request):
             )
             newCustomer.save()
     newForm = CreateCustomerAccount()
-    context = {'CreateCustomerAccount':newForm}
-    return render(request, 'shop_app/new_customer.html', context)
+    context = {'customer_create_form':newForm}
+    return render(request, 'shop_app/customer_create.html', context)
+
+def vendor_create(request):
+    newVendor = None
+    if request.method == "POST":
+        form = CreateVendorAccount(request.Post)
+        if form.is_valid():
+            newCadet = Cadet(
+                cadetid = form.cleaned_data['cadetId'],
+                firstname = form.cleaned_data['firstName'],
+                lastname = form.cleaned_data['lastName'],
+                company = form.cleaned_data['company'],
+                gradyear = form.cleaned_data['gradYear'],
+                roomnumber = form.cleaned_data['roomNum'],
+                email = form.cleaned_data['email'],
+                venmo = form.cleaned_data['venmo'],
+            )
+            newCadet.save()
+            toAddCadet = Cadet.objects.get(cadetid = form.cleaned_data['cadetId'])
+            newVendor = Vendor(
+                cadet = toAddCadet,
+                dodid = form.cleaned_data['dodId']
+            )
+            newVendor.save()
+    newForm = CreateVendorAccount()
+    context = {'vendor_create_form':newForm}
+    return render(request, 'shop_app/vendor_create.html', context)
