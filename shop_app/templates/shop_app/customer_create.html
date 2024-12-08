@@ -1,0 +1,18 @@
+{% load static %}
+
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'shop_app/style.css' %}"/>
+</head>
+
+{% block content %}
+
+<h1>Create Customer Account</h1>
+<form action="{% url 'customer_create' %}" method="post">
+  {% csrf_token %}
+  {{ customer_create_form }}
+  <input type="submit" value="Submit">
+</form>
+
+{% endblock %}
