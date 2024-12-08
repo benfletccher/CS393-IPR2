@@ -90,7 +90,6 @@ class AuthUserUserPermissions(models.Model):
 
 
 class Cadet(models.Model):
-    user = models.OneToOneField(User, models.DO_NOTHING, db_column='user')
     cadetid = models.IntegerField(db_column='cadetId', primary_key=True)  # Field name made lowercase.
     firstname = models.CharField(db_column='firstName', max_length=100, blank=True, null=True)  # Field name made lowercase.
     lastname = models.CharField(db_column='lastName', max_length=100, blank=True, null=True)  # Field name made lowercase.
@@ -107,6 +106,7 @@ class Cadet(models.Model):
 
 class Customer(models.Model):
     cadet = models.OneToOneField(Cadet, models.DO_NOTHING, db_column='cadet', primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)  # Link to User model
     shoppingpreference = models.CharField(db_column='shoppingPreference', max_length=255, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
@@ -227,6 +227,7 @@ class Transactiontable(models.Model):
 
 class Vendor(models.Model):
     cadet = models.OneToOneField(Cadet, models.DO_NOTHING, db_column='cadet', primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)  # Link to User model
     dodid = models.IntegerField(db_column='DODId', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
