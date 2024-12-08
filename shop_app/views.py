@@ -68,7 +68,7 @@ def customer_create(request):
                 customerGroup = Group.objects.get(name='Customer')
                 customerUser.groups.add(customerGroup)
                 customerUser.save()
-                print("GOT THROUGH USER CREATION")
+                ##print("GOT THROUGH USER CREATION")
 
 
             newCadet = Cadet(
@@ -97,6 +97,19 @@ def vendor_create(request):
     if request.method == "POST":
         form = CreateVendorAccount(request.POST)
         if form.is_valid():
+
+            try:
+                vendorUser = User.objects.get(username=form.cleaned_data['username'])
+                return HttpResponse("User already exists")
+            except User.DoesNotExist:
+                vendorUser = User.objects.create_user(form.cleaned_data['username'], form.cleaned_data['email'], form.cleaned_data['password'])
+                vendorUser.first_name = form.cleaned_data['firstName']
+                vendorUser.last_name = form.cleaned_data['lastName']
+                vendorGroup = Group.objects.get(name='Vendor')
+                vendorUser.groups.add(vendorGroup)
+                vendorUser.save()
+                ##print("GOT THROUGH USER CREATION")
+
             newCadet = Cadet(
                 cadetid = form.cleaned_data['cadetId'],
                 firstname = form.cleaned_data['firstName'],

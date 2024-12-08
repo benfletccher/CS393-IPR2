@@ -231,5 +231,5 @@ class Vendor(models.Model):
     dodid = models.IntegerField(db_column='DODId', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'vendor'
