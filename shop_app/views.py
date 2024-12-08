@@ -49,7 +49,8 @@ def listing(request, listing_id):
 
 def all_listings(request):
     listings = Listing.objects.order_by("listingdate")
-    context = {"all_listings": listings}
+    customer_name = request.user.first_name
+    context = {"all_listings": listings, "customer_name":customer_name}
     return render(request, "shop_app/customer_landing.html", context)
 
 
