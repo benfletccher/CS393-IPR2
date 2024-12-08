@@ -14,6 +14,8 @@ class ProductLookup(forms.Form):
     prodName = forms.CharField(label="Product Name", max_length=255)
 
 class CreateCustomerAccount(forms.Form):
+    username = forms.CharField(label="Username", max_length=50)
+    password = forms.CharField(widget=forms.PasswordInput)
     cadetId = forms.IntegerField(label="C-Num")
     firstName = forms.CharField(label="First Name", max_length=100, min_length=1)
     lastName = forms.CharField(label="Last Name", max_length=200, min_length=1)
@@ -25,6 +27,8 @@ class CreateCustomerAccount(forms.Form):
     shoppingPref = forms.CharField(label="Shopping Preferences ('Clothes' or 'Other')", max_length=255)
 
 class CreateVendorAccount(forms.Form):
+    username = forms.CharField(label="Username", max_length=50)
+    password = forms.CharField(widget=forms.PasswordInput)
     cadetId = forms.IntegerField(label="C-Num")
     firstName = forms.CharField(label="First Name", max_length=100, min_length=1)
     lastName = forms.CharField(label="Last Name", max_length=200, min_length=1)
@@ -35,6 +39,12 @@ class CreateVendorAccount(forms.Form):
     venmo = forms.CharField(label="Venmo Username", max_length=100)
     dodId = forms.IntegerField(label='DOD ID')
 
-class login(forms.Form):
-    email = forms.EmailField(label = 'Email')
-    password =
+GROUP_CHOICES = (
+    ("1", "Vendor"),
+    ("2", "Customer"),
+)
+
+class Login(forms.Form):
+    username = forms.CharField(label="Username", max_length=50, min_length=1)
+    password = forms.CharField(widget=forms.PasswordInput)
+    group = forms.ChoiceField(choices=GROUP_CHOICES)

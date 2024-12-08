@@ -1,7 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, Http404
 from .models import Cadet, Product, Customer, Vendor
-from .forms import ProductLookup, CreateCustomerAccount, CreateVendorAccount
+from .forms import ProductLookup, CreateCustomerAccount, CreateVendorAccount, Login
+from django.contrib.auth.models import Group, User
+from django.contrib.auth import authenticate
 
 
 
@@ -11,7 +13,18 @@ def landing(request):
     return render(request, "shop_app/landing.html")
 
 def index(request):
-    return render(request, "shop_app/index.html")
+    if request.method == "POST":
+        submittedForm = Login(request.POST)
+        if submittedForm.is_valid():
+            user = authenticate(username=submittedForm.cleaned_data['username'], password=submittedForm.cleaned_data['password'])
+            if user is not None:
+                print("SUCCESFULLY LOGGGED INNNN!!!!!")
+                return HttpResponse("GOOD LOG IN")
+            else:
+                return HttpResponse("INCORRECT LOG IN")
+    newForm = Login()
+    context = {'login_form': newForm}
+    return render(request, "shop_app/index.html", context)
 
 
 # View to display all of the cadets who have registered an account
@@ -45,21 +58,34 @@ def customer_create(request):
     if request.method == "POST":
         form = CreateCustomerAccount(request.POST)
         if form.is_valid():
+            try:
+                customerUser = User.objects.get(username=form.cleaned_data['username'])
+                return HttpResponse("User already exists")
+            except User.DoesNotExist:
+                customerUser = User.objects.create_user(form.cleaned_data['username'], form.cleaned_data['email'], form.cleaned_data['password'])
+                customerUser.first_name = form.cleaned_data['firstName']
+                customerUser.last_name = form.cleaned_data['lastName']
+                customerGroup = Group.objects.get(name='Customer')
+                customerUser.groups.add(customerGroup)
+                customerUser.save()
+                print("GOT THROUGH USER CREATION")
+
+
             newCadet = Cadet(
-                cadetid = form.cleaned_data['cadetId'],
-                firstname = form.cleaned_data['firstName'],
-                lastname = form.cleaned_data['lastName'],
-                company = form.cleaned_data['company'],
-                gradyear = form.cleaned_data['gradYear'],
-                roomnumber = form.cleaned_data['roomNum'],
-                email = form.cleaned_data['email'],
-                venmo = form.cleaned_data['venmo'],
+            cadetid = form.cleaned_data['cadetId'],
+            firstname = form.cleaned_data['firstName'],
+            lastname = form.cleaned_data['lastName'],
+            company = form.cleaned_data['company'],
+            gradyear = form.cleaned_data['gradYear'],
+            roomnumber = form.cleaned_data['roomNum'],
+            email = form.cleaned_data['email'],
+            venmo = form.cleaned_data['venmo'],
             )
             newCadet.save()
             toAddCadet = Cadet.objects.get(cadetid = form.cleaned_data['cadetId'])
             newCustomer = Customer(
                 cadet = toAddCadet,
-                shoppingpreference = form.cleaned_data['shoppingPref']
+                shoppingpreference = form.cleaned_data['shoppingPref'],
             )
             newCustomer.save()
     newForm = CreateCustomerAccount()

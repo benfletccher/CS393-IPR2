@@ -110,7 +110,7 @@ class Customer(models.Model):
     shoppingpreference = models.CharField(db_column='shoppingPreference', max_length=255, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'customer'
 
 
