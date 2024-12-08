@@ -1,12 +1,12 @@
 {% extends "shop_app/base_generic.html" %}
 {% load static%}
 
-
+{% block content %}
 <head>
   <link rel="stylesheet" href="{% static 'shop_app/listing.css' %}">
 </head>
 
-{% block content %}
+
   <div class="container">
     <h1>Welcome, {{ customer_name }}! Browse our listings:</h1>
 

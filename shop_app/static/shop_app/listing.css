@@ -1,57 +1,80 @@
-/* General Styles */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f9f9f9;
-}
-
-/* Dashboard Container */
-.dashboard-container {
-  width: 80%;
-  margin: 20px auto;
+/* General Styles for the Page */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Product List */
-.product-list {
+h1 {
+  text-align: center;
+  font-size: 2.5em;
+  margin-bottom: 40px;
+}
+
+/* Card Container */
+.card-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
   margin-top: 20px;
 }
 
-/* Product Card */
-.product-card {
+/* Card Style */
+.card {
   background-color: #fff;
-  padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.product-card h3 {
+/* Card Hover Effect */
+.card:hover {
+  transform: translateY(-10px);
+}
+
+/* Card Image (Optional: If you have product images, this is for them) */
+.card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Card Body */
+.card-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Card Title */
+.card-title {
   font-size: 1.5em;
+  font-weight: bold;
   margin-bottom: 10px;
 }
 
-.product-card p {
-  margin: 5px 0;
+/* Card Price */
+.card-price {
+  color: #28a745;
+  font-size: 1.2em;
+  margin-bottom: 10px;
 }
 
-.view-button {
-  display: inline-block;
-  padding: 10px;
-  background-color: #007BFF;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 5px;
-  margin-top: 10px;
+/* Card Date */
+.card-date {
+  color: #888;
+  font-size: 0.9em;
+  margin-top: auto;
 }
 
-.view-button:hover {
-  background-color: #0056b3;
+/* Responsive Design */
+@media (max-width: 768px) {
+  .card-container {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
 }
