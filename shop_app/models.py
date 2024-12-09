@@ -198,6 +198,9 @@ class Product(models.Model):
     productid = models.IntegerField(db_column='productId', primary_key=True)  # Field name made lowercase.
     prodname = models.CharField(db_column='prodName', max_length=255, blank=True, null=True)  # Field name made lowercase.
 
+    def __str__(self):
+        return self.prodname
+
     class Meta:
         managed = False
         db_table = 'product'
