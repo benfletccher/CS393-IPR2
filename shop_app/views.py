@@ -54,7 +54,11 @@ def product_list(request):
     return render(request, "shop_app/product_list.html", context)
 
 def listing(request, listing_id):
-    return HttpResponse(f"You're looking at listing {listing_id}.")
+    data = Listing.objects.get(listingid=listing_id)
+    vendor = Listing.objects.select_related('vendorid__cadet').filter(listingid=listing_id).first()
+    #Vendor.objects.select_related('cadet').filter(cadet__lastname=vendor_last).first()
+    context = {'listing': data, 'vendor': vendor}
+    return render(request, "shop_app/listing.html", context)
 
 @login_required
 def customer_landing(request):

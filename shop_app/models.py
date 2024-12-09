@@ -99,6 +99,9 @@ class Cadet(models.Model):
     email = models.EmailField(max_length=200, blank=True, null=True)
     venmo = models.CharField(max_length=100, blank=True, null=True)
 
+    def __str__(self):
+        return self.firstname
+
     class Meta:
         managed = False
         db_table = 'cadet'
