@@ -13,5 +13,6 @@ urlpatterns = [
     path('customer_create', views.customer_create, name='customer_create'),
     path("customer_landing", views.customer_landing, name='all_listings'),
     path('vendor_landing', views.vendor_landing, name='vendor_landing'),
-    path('new_listing', views.new_listing, name='new_listing')
+    path('new_listing', views.new_listing, name='new_listing'),
+    path('listing/<int:listing_id>', views.listing, name="details"),
 ]

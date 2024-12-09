@@ -54,7 +54,7 @@ def product_list(request):
     return render(request, "shop_app/product_list.html", context)
 
 def listing(request, listing_id):
-    return HttpResponse(f"You're looking at task {listing_id}.")
+    return HttpResponse(f"You're looking at listing {listing_id}.")
 
 @login_required
 def customer_landing(request):

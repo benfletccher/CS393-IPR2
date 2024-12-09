@@ -13,7 +13,7 @@
     <div class="card-container">
       {% for listing in all_listings %}
         <div class="card">
-          <a href="{{ listing.listingid }}">
+          <a href="listing/{{listing.listingid}}">
             <div class="card-body">
               <h3 class="card-title">{{ listing.listingname }}</h3>
               <p class="card-price">${{ listing.price }}</p>
