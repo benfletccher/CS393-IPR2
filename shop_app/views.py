@@ -206,5 +206,6 @@ def owned_listings(request):
 
 @login_required
 def remove_listing(request, listing_id):
-    data = Listing.objects.get(listingid=listing_id)
+    Listing.objects.filter(listingid=listing_id).delete()
+    return redirect("/vendor_landing")
 
