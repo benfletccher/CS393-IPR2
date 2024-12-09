@@ -3,16 +3,16 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="{% static 'shop_app/style.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'shop_app/forms.css' %}"/>
 </head>
 
 {% block content %}
-
+<div class="container">
 <h1>Create Vendor Account</h1>
 <form action="{% url 'vendor_create' %}" method="post">
   {% csrf_token %}
   {{ vendor_create_form }}
   <input type="submit" value="Submit">
 </form>
-
+</div>
 {% endblock %}

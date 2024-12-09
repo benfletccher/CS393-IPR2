@@ -1,0 +1,105 @@
+/* General Styles for the Page */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f4f9;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    box-sizing: border-box;
+    text-align: center; /* Center-align header and error messages */
+}
+
+/* Form Header */
+h1 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Input Fields */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"], /* Added for IntegerFields */
+select {
+    width: 100%;
+    max-width: 300px; /* Reduced input field size */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 0.9em;
+    background-color: #f9f9f9;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus, /* Added focus style for number fields */
+select:focus {
+    border-color: #4caf50;
+    outline: none;
+    background-color: #fff;
+}
+
+/* Submit Button */
+button {
+    padding: 10px 15px;
+    font-size: 1em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #4caf50;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    width: 100%;
+    max-width: 300px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Error Message */
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="number"],
+    select,
+    button {
+        max-width: 100%;
+    }
+}
