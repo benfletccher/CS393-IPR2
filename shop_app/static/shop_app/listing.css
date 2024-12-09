@@ -95,3 +95,34 @@ h1 {
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
 }
+
+/* Container for the Remove Listing Button */
+.remove-listing-container {
+  text-align: center; /* Center-align the button */
+  margin-top: 20px;   /* Add some spacing at the top */
+}
+
+/* Styling for the Remove Listing Button */
+.remove-listing-btn {
+  display: inline-block;
+  background-color: #dc3545; /* Red background */
+  color: #fff; /* White text */
+  padding: 10px 20px; /* Padding for the button */
+  border-radius: 5px; /* Rounded corners */
+  text-decoration: none; /* Remove underline */
+  font-size: 1em; /* Adjust font size */
+  font-weight: bold; /* Make the text bold */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+}
+
+/* Hover Effect for the Remove Listing Button */
+.remove-listing-btn:hover {
+  background-color: #c82333; /* Darker red for hover effect */
+  transform: scale(1.05); /* Slightly increase size on hover */
+}
+
+/* Active Effect for the Remove Listing Button */
+.remove-listing-btn:active {
+  background-color: #bd2130; /* Even darker red for active state */
+  transform: scale(0.95); /* Slightly shrink on click */
+}

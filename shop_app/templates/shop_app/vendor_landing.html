@@ -14,6 +14,10 @@
         <a href="{% url 'new_listing' %}" class="add-listing-btn">+ Add New Listing</a>
     </div>
 
+    <div class="remove-listing-container">
+        <a href="/owned_listings" class="remove-listing-btn">- Remove A Listing</a>
+    </div>
+
     <div class="card-container">
       {% for listing in all_listings %}
         <div class="card">

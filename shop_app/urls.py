@@ -15,4 +15,6 @@ urlpatterns = [
     path('vendor_landing', views.vendor_landing, name='vendor_landing'),
     path('new_listing', views.new_listing, name='new_listing'),
     path('listing/<int:listing_id>', views.listing, name="details"),
+    path('owned_listings', views.owned_listings, name="owned"),
+    path('remove_listing/<int:listing_id>', views.remove_listing, name="remove"),
 ]

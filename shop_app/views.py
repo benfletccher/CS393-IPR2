@@ -198,9 +198,9 @@ def owned_listings(request):
 
     vendor_last = request.user.last_name
     vendor = Vendor.objects.select_related('cadet').filter(cadet__lastname=vendor_last).first()
-    data = Listing.objects.filter(vendorid=vendor.cadet)
-
-    context = {"owned_listings": data, "vendor":vendor}
+    data = Listing.objects.filter(vendorid=vendor)
+    customer_name = request.user.first_name
+    context = {"owned_listings": data, "customer_name": customer_name}
     return render(request, "shop_app/vendor_removal.html", context)
 
 
