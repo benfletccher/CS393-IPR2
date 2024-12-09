@@ -3,21 +3,21 @@
 
 {% block content %}
 <head>
-  <link rel="stylesheet" href="{% static 'shop_app/listing.css' %}">
+  <link rel="stylesheet" href="{% static 'shop_app/red_listing.css' %}">
 </head>
 
 
   <div class="container">
-    <h1>Welcome, {{ customer_name }}! Browse our listings:</h1>
+    <h1>Welcome, {{ customer_name }}! Here are your listings. Click on the listing that you wish to remove:</h1>
 
     <div class="card-container">
-      {% for listing in all_listings %}
+      {% for listing in owned_listings %}
         <div class="card">
-          <a href="listing/{{owned_listings.listingid}}">
+          <a href="remove_listing/{{listing.listingid}}">
             <div class="card-body">
-              <h3 class="card-title">{{ owned_listings.listingname }}</h3>
-              <p class="card-price">${{ owned_listings.price }}</p>
-              <p class="card-date">{{ owned_listings.listingdate|date:"F d, Y" }}</p>
+              <h3 class="card-title">{{ listing.listingname }}</h3>
+              <p class="card-price">${{ listing.price }}</p>
+              <p class="card-date">{{ listing.listingdate|date:"F d, Y" }}</p>
             </div>
           </a>
         </div>
