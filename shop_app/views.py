@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, Http404
-from .models import Cadet, Product, Customer, Vendor, Listing
+from .models import Cadet, Product, Customer, Vendor, Listing, Productinlisting
 from .forms import ProductLookup, CreateCustomerAccount, CreateVendorAccount, Login, newListing
 from django.contrib.auth.models import Group, User
 from django.contrib.auth import authenticate, logout, login
@@ -174,6 +174,7 @@ def new_listing(request):
         if form.is_valid():
             vendor_last = request.user.last_name
             vendor = Vendor.objects.select_related('cadet').filter(cadet__lastname=vendor_last).first()
+            product = form.cleaned_data['product']
 
             listing = Listing(
                 vendorid = vendor,
@@ -183,6 +184,11 @@ def new_listing(request):
                 listingdate = timezone.now().date()
             )
             listing.save()
+            productInListing = Productinlisting(
+                productid = product,
+                listingid = listing
+            )
+            productInListing.save()
     newForm = newListing()
     context = {"create_listing":newForm}
     return render(request, 'shop_app/add_listing.html', context)
