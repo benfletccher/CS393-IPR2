@@ -28,7 +28,7 @@ def index(request):
                 print(userType)
                 login(request, user)
                 if userType == "1":
-                    return render(request, "shop_app/vendor_landing.html")
+                    return redirect("/vendor_landing")
                 elif userType == "2": 
                     tempReq = request
                     return redirect("/customer_landing")
@@ -78,6 +78,7 @@ def product_lookup(request):
     context = {'products':products}
     return render(request, 'shop_app/product_results.html', context)
 
+@login_required
 def vendor_landing(request):
     listings = Listing.objects.order_by("listingdate")
     customer_name = request.user.first_name
@@ -168,14 +169,14 @@ def new_listing(request):
         form = newListing(request.POST)
         if form.is_valid():
             vendor_last = request.user.last_name
-            vendor = Vendor.objects.select_related('cadet').filter(cadet__lastname=vendor_last).values('cadet__cadetid')
+            vendor = Vendor.objects.select_related('cadet').filter(cadet__lastname=vendor_last).first()
 
             listing = Listing(
                 vendorid = vendor,
                 listingname = form.cleaned_data['listingName'],
                 price = form.cleaned_data['price'],
                 quantity = form.cleaned_data['quantity'],
-                listingDate = timezone.now().date()
+                listingdate = timezone.now().date()
             )
             listing.save()
     newForm = newListing()

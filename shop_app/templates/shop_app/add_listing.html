@@ -11,7 +11,7 @@
 <h1>Create Listing</h1>
 <form action="{% url 'new_listing' %}" method="post">
   {% csrf_token %}
-  {{ newForm }}
+  {{ create_listing }}
   <input type="submit" value="Submit">
 </form>
 
